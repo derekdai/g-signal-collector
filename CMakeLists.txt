@@ -12,6 +12,7 @@ add_library(
 	collector
 	signal-info
 	signal-info-pool
+	signal-info-pool-dumper
 )
 
 target_link_libraries( g-signal-collector ${GOBJECT_LIBRARIES} )

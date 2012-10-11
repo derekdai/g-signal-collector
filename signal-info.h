@@ -9,8 +9,8 @@ typedef struct _SignalInfo SignalInfo;
 
 struct _SignalInfo
 {
-	gdouble timestamp;
-
+	gint id;
+	
 	gpointer thread;
 	
 	gpointer instance;
@@ -20,11 +20,15 @@ struct _SignalInfo
 	guint signal_id;
 
 	GQuark detail;
-
-	gdouble elapsed;
 	
 	gint depth;
+
+	gdouble timestamp;
+
+	gdouble elapsed;
 };
+
+gint signal_info_next_id();
 
 void signal_info_dump(SignalInfo * self);
 

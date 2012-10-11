@@ -1,6 +1,13 @@
 #include "signal-info.h"
 #include <string.h>
 
+static volatile gint next_id = 0;
+
+gint signal_info_next_id()
+{
+	return g_atomic_int_add(& next_id, 1);
+}
+
 void signal_info_dump(SignalInfo * self)
 {
 	gchar * spaces = "";
@@ -11,7 +18,8 @@ void signal_info_dump(SignalInfo * self)
 		spaces[n_spaces] = '\0';
 	}
 	
-	g_printerr("%p %13f %9f %p %s%s::%s\n",
+	g_printerr("%d %p %13f %9f %p %s%s::%s\n",
+		self->id,
 		self->thread,
 		self->timestamp,
 		self->elapsed,
