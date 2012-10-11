@@ -236,7 +236,7 @@ static void parse_params()
 {
 	output_format = g_getenv(ENV_GSC_OUTPUT_FORMAT);
 	if(! output_format) {
-		output_format = "gcs";
+		output_format = "gsc";
 	}
 	
 	if(! g_strcmp0("csv", output_format)) {
@@ -270,11 +270,13 @@ static void deinit()
 {
 	g_printerr("Signal collector deinitializing\n");
 	
+	gdouble start_dump = g_timer_elapsed(timer, NULL);
+	dump_info_pools();
+	g_printerr("Dump spent %fs\n", g_timer_elapsed(timer, NULL) - start_dump);
+
 	g_timer_stop(timer);
 	g_timer_destroy(timer);
 	timer = NULL;
-	
-	dump_info_pools();
 	
 	signal_info_pool_dumper_free(dumper);
 	dumper = NULL;
