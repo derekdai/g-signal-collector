@@ -255,6 +255,8 @@ static void parse_params()
 static void init()
 {
 	g_printerr("Signal collector initializing\n");
+	
+	g_type_init();
 
 	parse_params();
 

@@ -6,7 +6,7 @@ add_library(
 	signal-info-pool-dumper
 )
 
-target_link_libraries( g-signal-collector ${GOBJECT_LIBRARIES} )
+target_link_libraries( g-signal-collector ${GIO_LIBRARIES} dl )
 
 install( TARGETS g-signal-collector LIBRARY DESTINATION lib )
 
